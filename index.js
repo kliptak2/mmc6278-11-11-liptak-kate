@@ -14,6 +14,17 @@ const makePoemHTML = ([{ title, author, lines }]) => {
   let makeAuthor = pipe(makeTag("em"), makeTag("h3"))(`by ${author}`);
   let allStanzasArr = [];
   let indivStanzaArr = [];
+  lines.forEach((line, index) => {
+      if(!line){
+        allStanzasArr.push(indivStanzaArr);
+        indivStanzaArr = [];
+    } else if (index === lines.length -1){ //this is the last line of the poem
+      indivStanzaArr.push(line);           //add final line to final indivStanzaArr
+      allStanzasArr.push(indivStanzaArr);  //add final indivStanzaArr to list of allStanzasArr
+    } else {                               //if we have a valid line and it isn't the last line of the poem, add it to the current indivStanzaArr and move on
+      indivStanzaArr.push(line);
+    }
+  });
 
 };
 
