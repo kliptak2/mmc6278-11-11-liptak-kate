@@ -25,7 +25,13 @@ const makePoemHTML = ([{ title, author, lines }]) => {
       indivStanzaArr.push(line);
     }
   });
+console.log(allStanzasArr)
+  let stanzaStr = ""
+  allStanzasArr.forEach((indivStanzaArr) => {                //loop through all allStanzasArr in the poem. forEach goes over elements instead of for loop which goes over indexes
+    stanzaStr += makeTag("p")(indivStanzaArr.join("<br/>")); //each indivStanzaArr is an **array** of strings
+  });
 
+  return `${makeTitle}${makeAuthor}${stanzaStr}`;
 };
 
 // attach a click event to #get-poem
